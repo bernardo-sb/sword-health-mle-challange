@@ -16,3 +16,8 @@ dev:
 .PHONY: transform
 transform:
 	message transform
+
+# get message with argument
+.PHONY: get-message
+get-message:
+	message get-message $(session_group)
