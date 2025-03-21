@@ -14,17 +14,25 @@ packages = [
     "typer==0.9.0",
 ]
 
+dev_packages = [
+    "pytest",
+    *packages,
+]
+
 setup(
     name="message",
     version="0.1.0",
     author="Sword Health",
     author_email="ai@swordhealth.com",
-    python_requires=">=3.8",
+    python_requires=">=3.8, <=3.11",
     packages=find_packages(exclude=("tests", "resources")),
     install_requires=packages,
     entry_points={
         "console_scripts": [
             "message = message.main:app",
         ],
+    },
+    extras_require={
+        "dev": dev_packages,
     },
 )

@@ -2,10 +2,15 @@
 
 .ONESHELL:
 venv:
-	python3 -m venv venv
-	source venv/bin/activate && \
-	python -m pip install --upgrade pip setuptools wheel pipenv && \
-	python -m pip install -e .
+	uv venv --python 3.11
+	uv pip install --upgrade pip setuptools wheel pipenv
+	uv pip install -e .
+
+.PHONY: dev
+dev:
+	uv venv --python 3.11
+	uv pip install --upgrade pip setuptools wheel pipenv
+	uv pip install -e .[dev]
 
 # transform
 .PHONY: transform
