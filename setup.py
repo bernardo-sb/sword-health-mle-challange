@@ -25,7 +25,7 @@ setup(
     author="Sword Health",
     author_email="ai@swordhealth.com",
     python_requires=">=3.8, <=3.11",
-    packages=find_packages(exclude=("tests", "resources")),
+    packages=find_packages(exclude=("tests", "resources", "prompts")), # added prompts
     install_requires=packages,
     entry_points={
         "console_scripts": [
