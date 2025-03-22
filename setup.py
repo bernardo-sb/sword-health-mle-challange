@@ -12,6 +12,7 @@ packages = [
     "pyarrow==14.0.2",
     "SQLAlchemy==1.4.46",
     "typer==0.9.0",
+    "pyyaml"
 ]
 
 dev_packages = [
@@ -25,7 +26,7 @@ setup(
     author="Sword Health",
     author_email="ai@swordhealth.com",
     python_requires=">=3.8, <=3.11",
-    packages=find_packages(exclude=("tests", "resources", "prompts")), # added prompts
+    packages=find_packages(exclude=("tests", "resources")),
     install_requires=packages,
     entry_points={
         "console_scripts": [

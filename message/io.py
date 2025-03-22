@@ -1,6 +1,19 @@
 """File I/O operations."""
 import os
 import json
+import yaml
+
+def load_prompts() -> dict[str, str]:
+    """Load prompts from YAML file.
+
+    Returns
+    -------
+    dict[str, str]
+        The prompts.
+    """
+    with open("prompts/prompts.yml", "r") as f:
+        return yaml.safe_load(f)
+
 
 def load_chat_history(chat_id: str) -> list[dict[str, str]]:
     """Load chat history from JSONL file.

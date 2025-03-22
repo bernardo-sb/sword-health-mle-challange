@@ -1,25 +1,14 @@
 """Chat"""
 
 from enum import StrEnum
-from message.prompts import (
-    SYSTEM_BASE,
-    SYSTEM_FEEDBACK,
-    EXTRA_FEEDBACK,
-    TONE_PROMPT,
-    GENERIC_PROMPT,
-    ENGAGEMENT_PROMPT,
-    FACTUALITY_PROMPT,
-    OTHER_PROMPT
-)
-from message.io import load_chat_history, save_chat_history
+from message.io import load_chat_history, load_prompts, save_chat_history
 from uuid import uuid4
-import asyncio
 from message.config import get_settings
 from message.model import ChatModel
 from message.data import get_features
 import typer
 
-
+prompts = load_prompts()
 settings = get_settings()
 chat_model = ChatModel()
 
@@ -32,11 +21,11 @@ class FeedbackOption(StrEnum):
     OTHER = "other"
 
 FEEDBACK_PROMPT_MAP = {
-    FeedbackOption.TONE: TONE_PROMPT,
-    FeedbackOption.GENERIC: GENERIC_PROMPT,
-    FeedbackOption.ENGAGEMENT: ENGAGEMENT_PROMPT,
-    FeedbackOption.FACTUALITY: FACTUALITY_PROMPT,
-    FeedbackOption.OTHER: OTHER_PROMPT,
+    FeedbackOption.TONE: prompts["TONE_PROMPT"],
+    FeedbackOption.GENERIC: prompts["GENERIC_PROMPT"],
+    FeedbackOption.ENGAGEMENT: prompts["ENGAGEMENT_PROMPT"],
+    FeedbackOption.FACTUALITY: prompts["FACTUALITY_PROMPT"],
+    FeedbackOption.OTHER: prompts["OTHER_PROMPT"],
 }
 
 def prompt_for_acceptance() -> str:
@@ -118,7 +107,12 @@ async def run_chat(session_group: str):
         chat_history = load_chat_history(chat_id)
 
         if not chat_history:
-            chat_history.append({"role": "system", "content": SYSTEM_BASE.format(session_data=features)})
+            chat_history.append(
+                {
+                    "role": "system",
+                    "content": prompts["SYSTEM_BASE"].format(session_data=features)
+                }
+            )
 
         print("[INFO] Starting chat...")
         print("="*50)
