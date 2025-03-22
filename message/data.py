@@ -39,10 +39,6 @@ def transform_features_sql():
 def transform_features_py() -> pd.DataFrame:
     """Loads the exercise results and transforms them into features.
     
-    Parameters
-    ----------
-    None
-    
     Returns
     -------
     pd.DataFrame
