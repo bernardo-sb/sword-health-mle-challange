@@ -1,0 +1,41 @@
+"""File I/O operations."""
+import os
+import json
+
+def load_chat_history(chat_id: str) -> list[dict[str, str]]:
+    """Load chat history from JSONL file.
+
+    Parameters
+    ----------
+    chat_id : str
+        The chat id.
+
+    Returns
+    -------
+    list[dict[str, str]]
+        The chat history.
+    """
+    os.makedirs(".chats", exist_ok=True)
+    chat_file = os.path.join(".chats", f"{chat_id}.jsonl")
+
+    if not os.path.exists(chat_file):
+        with open(chat_file, "w") as f:
+            return []
+
+    with open(chat_file, "r") as f:
+        return [json.loads(line) for line in f]
+
+async def save_chat_history(chat_id: str, chat_history: list[dict[str, str]]):
+    """Save chat history to JSONL file.
+
+    Parameters
+    ----------
+    chat_id : str
+        The chat id.
+    chat_history : list[dict[str, str]]
+        The chat history.
+    """
+    chat_file = os.path.join(".chats", f"{chat_id}.jsonl")
+    with open(chat_file, "w") as f:
+        for message in chat_history:
+            f.write(json.dumps(message) + "\n")
