@@ -72,6 +72,19 @@ The application can be thought as a state machine, with distinct states: (genera
    - At end of session, `save_chat_history()` writes to disk
    - Each new session loads previous history for context
 
+
+### Prompt Relationship
+
+There are 2 prompt archetypes:
+- `SYSTEM_BASE`: The base prompt that is used to generate the message
+- `SYSTEM_FEEDBACK`: The feedback prompt that is used to generate the feedback
+
+The `SYSTEM_BASE` prompt is used to generate the initial message, and the `SYSTEM_FEEDBACK` prompt is used to generate the feedback.
+
+The `SYSTEM_FEEDBACK` prompt is used to generate the feedback. It depends on the various feedback categories.
+
+![prompt_relationship](prompt_relationship.jpg)
+
 ---
 
 ## Code Analysis
