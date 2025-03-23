@@ -111,7 +111,6 @@ FACTUALITY_PROMPT: |
   Ensure all information referenced is accurate based on the session data.
   Address specific exercises or issues that were documented.
   Provide appropriate next steps based on their actual performance.
-  """
 
 OTHER_PROMPT: |
   **Category: Other**
