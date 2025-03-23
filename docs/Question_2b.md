@@ -94,7 +94,7 @@ The proposed solution is an AI-powered system that generates personalized messag
 
 ### Technical Architecture
 
-![Technical Architecture](msg%20_arch.jpg)
+![Technical Architecture](msg_arch.jpg)
 
 ### Technical Stack
 
