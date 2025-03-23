@@ -8,7 +8,6 @@ def load2excel(data_dir: str | Path) -> None:
     files = os.listdir(data_dir)
     print(f"Files: {files}")
 
-    # one sheet for each file
     with pd.ExcelWriter("output.xlsx") as writer:
         for f in files:
             if f.endswith(".csv"):
