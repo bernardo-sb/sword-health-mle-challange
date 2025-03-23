@@ -17,6 +17,7 @@ packages = [
 
 dev_packages = [
     "pytest",
+    "openpyxl",
     *packages,
 ]
 
