@@ -83,7 +83,7 @@ The `SYSTEM_BASE` prompt is used to generate the initial message, and the `SYSTE
 
 The `SYSTEM_FEEDBACK` prompt is used to generate the feedback. It depends on the various feedback categories.
 
-![prompt_relationship](prompt_relationship.jpg)
+![prompt_relationship](assets/prompt_relationship.jpg)
 
 ---
 
