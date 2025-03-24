@@ -37,7 +37,12 @@ def aggregate_session_data(df: pd.DataFrame) -> pd.DataFrame:
         number_of_distinct_exercises=("exercise_name", "nunique"),
     ).reset_index()
     
-    grouped.set_index("session_group", inplace=True)
+    grouped["pain"] = grouped["pain"].astype("float64")
+    grouped["fatigue"] = grouped["fatigue"].astype("float64")
+    grouped["session_number"] = grouped["session_number"].astype("int64")
+    grouped["quality"] = grouped["quality"].astype("category")
+
+    # grouped.set_index("session_group", inplace=True)
     return grouped
 
 def calculate_performance_metrics(grouped: pd.DataFrame) -> pd.DataFrame:
@@ -81,6 +86,7 @@ def add_reason_counts(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
     for reason in quality_reasons:
         grouped[f"quality_reason_{reason}"] = df[df[f"quality_reason_{reason}"] == reason].groupby("session_group")["quality"].count()
         grouped[f"quality_reason_{reason}"].fillna(0, inplace=True)
+        grouped[f"quality_reason_{reason}"] = grouped[f"quality_reason_{reason}"].astype("int64")
     return grouped
 
 
@@ -164,5 +170,5 @@ def order_columns(grouped: pd.DataFrame) -> pd.DataFrame:
         "first_exercise_skipped",
         ]
     grouped = grouped[columns_order]
-    grouped.to_parquet(DATA_DIR / "session_data.parquet", index=False)
+
     return grouped
