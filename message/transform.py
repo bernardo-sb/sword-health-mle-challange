@@ -35,14 +35,30 @@ def aggregate_session_data(df: pd.DataFrame) -> pd.DataFrame:
         wrong_repeats=("wrong_repeats", "sum"),
         number_exercises=("exercise_name", "count"),
         number_of_distinct_exercises=("exercise_name", "nunique"),
+        quality_reason_movement_detection=("quality_reason_movement_detection", "first"),
+        quality_reason_my_self_personal=("quality_reason_my_self_personal", "first"),
+        quality_reason_other=("quality_reason_other", "first"),
+        quality_reason_exercises=("quality_reason_exercises", "first"),
+        quality_reason_tablet=("quality_reason_tablet", "first"),
+        quality_reason_tablet_and_or_motion_trackers=("quality_reason_tablet_and_or_motion_trackers", "first"),
+        quality_reason_easy_of_use=("quality_reason_easy_of_use", "first"),
+        quality_reason_session_speed=("quality_reason_session_speed", "first"),
     ).reset_index()
     
+    grouped["session_is_nok"] = grouped["session_is_nok"].astype("object")
     grouped["pain"] = grouped["pain"].astype("float64")
     grouped["fatigue"] = grouped["fatigue"].astype("float64")
     grouped["session_number"] = grouped["session_number"].astype("int64")
-    grouped["quality"] = grouped["quality"].astype("category")
+    grouped["quality"] = grouped["quality"].astype("float64")
+    grouped["quality_reason_movement_detection"] = grouped["quality_reason_movement_detection"].astype("int64")
+    grouped["quality_reason_my_self_personal"] = grouped["quality_reason_my_self_personal"].astype("int64")
+    grouped["quality_reason_other"] = grouped["quality_reason_other"].astype("int64")
+    grouped["quality_reason_exercises"] = grouped["quality_reason_exercises"].astype("int64")
+    grouped["quality_reason_tablet"] = grouped["quality_reason_tablet"].astype("int64")
+    grouped["quality_reason_tablet_and_or_motion_trackers"] = grouped["quality_reason_tablet_and_or_motion_trackers"].astype("int64")
+    grouped["quality_reason_easy_of_use"] = grouped["quality_reason_easy_of_use"].astype("int64")
+    grouped["quality_reason_session_speed"] = grouped["quality_reason_session_speed"].astype("int64")
 
-    # grouped.set_index("session_group", inplace=True)
     return grouped
 
 def calculate_performance_metrics(grouped: pd.DataFrame) -> pd.DataFrame:
@@ -78,15 +94,17 @@ def add_reason_counts(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
         Session data with reason counts added.
     """
     leave_exercise_reasons = ["system_problem", "other", "unable_perform", "pain", "tired", "technical_issues", "difficulty"]
-    quality_reasons = ["movement_detection", "my_self_personal", "other", "exercises", "tablet", "tablet_and_or_motion_trackers", "easy_of_use", "session_speed"]
+
+    df.set_index("session_group", inplace=True)
+    grouped.set_index("session_group", inplace=True)
 
     for reason in leave_exercise_reasons:
-        grouped[f"leave_exercise_{reason}"] = df[df["leave_exercise"] == reason].groupby("session_group")["leave_exercise"].count()
+        grouped[f"leave_exercise_{reason}"] = 0
+        df_leave_exercise = df[df["leave_exercise"] == reason].groupby("session_group")["leave_exercise"].count()
+        grouped.loc[df_leave_exercise.index, f"leave_exercise_{reason}"] = df_leave_exercise.values
         grouped[f"leave_exercise_{reason}"].fillna(0, inplace=True)
-    for reason in quality_reasons:
-        grouped[f"quality_reason_{reason}"] = df[df[f"quality_reason_{reason}"] == reason].groupby("session_group")["quality"].count()
-        grouped[f"quality_reason_{reason}"].fillna(0, inplace=True)
-        grouped[f"quality_reason_{reason}"] = grouped[f"quality_reason_{reason}"].astype("int64")
+    
+    grouped.reset_index(inplace=True) # this is inneficient...
     return grouped
 
 
