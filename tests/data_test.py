@@ -1,9 +1,8 @@
 from pathlib import Path
 import pytest
 import pandas as pd
-from pandas.testing import assert_frame_equal, assert_series_equal
 from message.data import transform_features_py
-from numpy.testing import assert_array_equal, assert_almost_equal
+from numpy.testing import assert_array_equal
 
 DATA_DIR = Path(__file__).parent.parent / "data"
 
@@ -80,3 +79,16 @@ def test_leave_exercise(result_df, expected_df, column):
         result_df[column].values.astype(int),
         expected_df[column].values.astype(int)
     )
+
+def test_identify_first_exercise_skipped(result_df, expected_df):
+    assert_array_equal(
+        result_df["first_exercise_skipped"].fillna("-").values,
+        expected_df["first_exercise_skipped"].fillna("-").values
+    )
+
+def test_identify_most_incorrect_exercise(result_df, expected_df):
+    # allow some error < 50%
+    assert sum(
+        result_df["exercise_with_most_incorrect"].fillna("-").values ==\
+            expected_df["exercise_with_most_incorrect"].fillna("-").values) >\
+                len(result_df) * 0.5
