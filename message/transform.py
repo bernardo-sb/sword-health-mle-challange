@@ -79,9 +79,8 @@ def add_reason_counts(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
         grouped[f"leave_exercise_{reason}"] = df[df["leave_exercise"] == reason].groupby("session_group")["leave_exercise"].count()
         grouped[f"leave_exercise_{reason}"].fillna(0, inplace=True)
     for reason in quality_reasons:
-        grouped[f"quality_{reason}"] = df[df["quality"] == reason].groupby("session_group")["quality"].count()
-        grouped[f"quality_{reason}"].fillna(0, inplace=True)
-
+        grouped[f"quality_reason_{reason}"] = df[df[f"quality_reason_{reason}"] == reason].groupby("session_group")["quality"].count()
+        grouped[f"quality_reason_{reason}"].fillna(0, inplace=True)
     return grouped
 
 
@@ -140,9 +139,22 @@ def order_columns(grouped: pd.DataFrame) -> pd.DataFrame:
         "session_number",
         "leave_session",
         "quality",
-        * grouped.columns[grouped.columns.str.startswith("quality_reason_")],
+        "quality_reason_movement_detection",
+        "quality_reason_my_self_personal",
+        "quality_reason_other",
+        "quality_reason_exercises",
+        "quality_reason_tablet",
+        "quality_reason_tablet_and_or_motion_trackers",
+        "quality_reason_easy_of_use",
+        "quality_reason_session_speed",
         "session_is_nok",
-        * grouped.columns[grouped.columns.str.startswith("leave_exercise_")],
+        "leave_exercise_system_problem",
+        "leave_exercise_other",
+        "leave_exercise_unable_perform",
+        "leave_exercise_pain",
+        "leave_exercise_tired",
+        "leave_exercise_technical_issues",
+        "leave_exercise_difficulty",
         "prescribed_repeats",
         "training_time",
         "perc_correct_repeats",
@@ -150,5 +162,7 @@ def order_columns(grouped: pd.DataFrame) -> pd.DataFrame:
         "number_of_distinct_exercises",
         "exercise_with_most_incorrect",
         "first_exercise_skipped",
-    ]
-    return grouped[columns_order]
+        ]
+    grouped = grouped[columns_order]
+    grouped.to_parquet(DATA_DIR / "session_data.parquet", index=False)
+    return grouped
