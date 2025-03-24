@@ -56,8 +56,8 @@ def transform_features_py() -> pd.DataFrame:
     grouped = aggregate_session_data(df)
     grouped = calculate_performance_metrics(grouped)
     grouped = add_reason_counts(df, grouped)
-    grouped = identify_problematic_exercises(df, grouped)
-    grouped = order_columns(grouped)
+    # grouped = identify_problematic_exercises(df, grouped)
+    # grouped = order_columns(grouped)
 
     return grouped
 
