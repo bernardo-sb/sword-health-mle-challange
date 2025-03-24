@@ -108,7 +108,7 @@ def add_reason_counts(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
     return grouped
 
 
-def identify_problematic_exercises(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
+def identify_most_incorrect_exercise(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
     """Identify exercises with problems (most incorrect, first skipped).
     
     Parameters
@@ -123,16 +123,30 @@ def identify_problematic_exercises(df: pd.DataFrame, grouped: pd.DataFrame) -> p
     pd.DataFrame
         Session data with problematic exercise information added.
     """
-    df_nonzero_wrong = df[df["wrong_repeats"] > 0]
-    if not df_nonzero_wrong.empty:
-        most_incorrect = df_nonzero_wrong.loc[df_nonzero_wrong.groupby("session_group")["wrong_repeats"].idxmax(), 
-                                            ["session_group", "exercise_name"]]
-    else:
-        most_incorrect = pd.DataFrame(columns=["session_group", "exercise_name"])  # Empty DataFrame to merge
 
-    grouped = grouped.merge(most_incorrect, on="session_group", how="left")
-    grouped.rename(columns={"exercise_name": "exercise_with_most_incorrect"}, inplace=True)
+    grouped_wrong_reps = df.groupby(["session_group", "exercise_name"])["wrong_repeats"].sum().reset_index()
+    grouped_incorrect_ex = grouped_wrong_reps.loc[grouped_wrong_reps.groupby("session_group")["wrong_repeats"].idxmax()].drop(columns="wrong_repeats", axis=1)
+    grouped = grouped.merge(grouped_incorrect_ex, on="session_group", how="left")
+    grouped = grouped.rename(columns={"exercise_name": "exercise_with_most_incorrect"})
+    
+    return grouped
 
+
+def identify_first_exercise_skipped(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
+    """Identify the first exercise skipped by the patient.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Raw exercise results data.
+    grouped : pd.DataFrame
+        Aggregated session data.
+        
+    Returns
+    -------
+    pd.DataFrame
+        Session data with first skipped exercise added.
+    """
     skipped_exercises = df[df["leave_exercise"].notnull()].sort_values(by=["session_group", "exercise_order"])
     first_skipped = skipped_exercises.groupby("session_group").first().reset_index()[["session_group", "exercise_name"]]
     grouped = grouped.merge(first_skipped, on="session_group", how="left")
