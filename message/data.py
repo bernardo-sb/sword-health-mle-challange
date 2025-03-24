@@ -8,7 +8,8 @@ from message.transform import (
     aggregate_session_data,
     calculate_performance_metrics,
     add_reason_counts,
-    identify_problematic_exercises,
+    identify_first_exercise_skipped,
+    identify_most_incorrect_exercise,
     order_columns,
 )
 
@@ -56,8 +57,9 @@ def transform_features_py() -> pd.DataFrame:
     grouped = aggregate_session_data(df)
     grouped = calculate_performance_metrics(grouped)
     grouped = add_reason_counts(df, grouped)
-    # grouped = identify_problematic_exercises(df, grouped)
-    # grouped = order_columns(grouped)
+    grouped = identify_first_exercise_skipped(df, grouped)
+    grouped = identify_most_incorrect_exercise(df, grouped)
+    grouped = order_columns(grouped)
 
     return grouped
 
