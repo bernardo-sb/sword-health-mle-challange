@@ -73,7 +73,7 @@ The application can be thought as a state machine, with distinct states: (genera
    - Each new session loads previous history for context
 
 
-### Prompt Relationship
+### Prompts Relationships
 
 There are 2 prompt archetypes:
 - `SYSTEM_BASE`: The base prompt that is used to generate the message
