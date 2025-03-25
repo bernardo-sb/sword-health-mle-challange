@@ -174,13 +174,17 @@ The proposed solution is an AI-powered system that generates personalized messag
 
 ## Cost Analysis
 
+Assuming **5000** daily active users and **3** AI generated messages per user, using `gpt-4o-mini`.
+A large portion of OpenAI's cost is expected to come from development and experimentation.
+
 | Component                   | Estimated Monthly Cost | Notes                                      |
 | --------------------------- | ---------------------- | ------------------------------------------ |
-| OpenAI API Usage            | $1,500 - $3,000        | Based on 50,000 messages/month, varies with length |
-| AWS Infrastructure          | $800 - $1,200          | Includes Lambda, S3, CloudWatch |
-| Vector Database             | $300 - $500            | Pinecone or similar service               |
-| Monitoring & Logging        | $200 - $400            | ELK stack, Datadog                        |
-| **Total Monthly Cost**      | **$2,800 - $5,100**    | **Expected to decrease with optimization** |
+| OpenAI API Usage            | $500 - $6,000        | Based on 450,000 messages/month, varies with length |
+| AWS Infrastructure          | $2,500 - $5,000          | Includes Lambda, S3, CloudWatch |
+| Monitoring & Logging        | $200 - $400            | ELK stack, Datadog, New Relic                        |
+| **Total Monthly Cost**      | **$3,200 - $11,400**    | **Expected to decrease with optimization** |
+
+- [LLM Price Check](https://llmpricecheck.com/)
 
 ## Other Relevant Considerations
 
