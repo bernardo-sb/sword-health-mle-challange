@@ -203,6 +203,62 @@ The system is configured with several prompt templates. Prompts are loaded from 
 
 ---
 
+## Interaction Examples
+
+In this section, we will go through a few examples of chat interactions. We use the same session group `++//wixk6DpH8NMGvqLqvpzWbzY=` for all examples.
+
+### Initial Prompt - Startup
+
+In this example we run the chat with session group `++//wixk6DpH8NMGvqLqvpzWbzY=`:
+
+```bash
+make get-message session_group=++//wixk6DpH8NMGvqLqvpzWbzY=
+```
+
+The chat will start with the base prompt and the session data.
+
+![initial_prompt](assets/initial_prompt.png)
+
+### Handling Edits
+
+This example shows how the chat handles edits with feedback. It purposly show how it handles a bad edit.
+
+1. The app starts a new chat session with the base prompt and session data.
+2. The LLM generates a message, which is displayed to the therapist.
+3. The therapist reviews the message and decides to edit it.
+4. The therapist misspell the word `tone` as `ton`.
+6. The app prompts for the category again.
+7. The therapist selects `tone`.
+8. The app prompts for the feedback.
+9. The therapist provides feedback.
+10. The app prompts for the acceptance.
+11. The therapist accepts the message.
+12. The app saves the chat history (implicit).
+
+![edit](assets/handle_edit.png)
+
+### Handling Rejections
+
+This example shows how the chat handles rejections. We purposly provide an empty feedback to show how the app handles it.
+
+1. The app starts a new chat session with the base prompt and session data.
+2. The LLM generates a message, which is displayed to the therapist.
+3. The therapist reviews the message and decides to reject it.
+4. The app prompts for an answer.
+4. The therapist provides empty feedback.
+5. The app prompts for an answer again.
+6. The therapist provides an answer.
+7. The app saves the chat history (implicit).
+
+![rejection](assets/handle_reject.png)
+
+### Handling Action Errors
+
+This example shows how the chat handles wrong action inputs
+The user inputs invalid and empty inputs.
+
+![error](assets/action_handling.png)
+
 ## Enhancement Opportunities
 
 ### Asynchronous I/O Optimization
