@@ -79,7 +79,7 @@ def calculate_performance_metrics(grouped: pd.DataFrame) -> pd.DataFrame:
 
 
 def add_reason_counts(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
-    """Add counts for different reasons for leaving exercises and quality ratings.
+    """Add counts for different reasons for leaving exercises.
     
     Parameters
     ----------
