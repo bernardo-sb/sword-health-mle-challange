@@ -134,7 +134,7 @@ open docs_build/index.html
 
 ### Serving Documentation
 
-To serve the documentation, run:
+To serve the documentation on local host, run:
 
 ```bash
 mkdocs serve
