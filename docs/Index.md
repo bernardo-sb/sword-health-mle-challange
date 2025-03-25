@@ -116,10 +116,10 @@ You can either read the documentation on your browser (using built docs) or read
 
 ### Building Documentation
 
-To build the documentation to target directory, run:
+To build the documentation you need to have dev dependencies installed (`make dev`). To build to target directory (`docs_build`), run:
 
 ```bash
-mkdocs build
+mkdocs build -d docs_build
 ```
 
 ### Opening Built Documentation
