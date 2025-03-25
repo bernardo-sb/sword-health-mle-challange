@@ -1,0 +1,905 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Question_1/">
+      
+      
+        <link rel="next" href="../Question_2a/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Question 1 - Testing Structure and Methodology - SWORD Health MLE Challenge - Bernardo de Lemos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#question-1-testing-structure-and-methodology" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="SWORD Health MLE Challenge - Bernardo de Lemos" class="md-header__button md-logo" aria-label="SWORD Health MLE Challenge - Bernardo de Lemos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SWORD Health MLE Challenge - Bernardo de Lemos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Question 1 - Testing Structure and Methodology
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SWORD Health MLE Challenge - Bernardo de Lemos" class="md-nav__button md-logo" aria-label="SWORD Health MLE Challenge - Bernardo de Lemos" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SWORD Health MLE Challenge - Bernardo de Lemos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Question_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Question 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Question 1 - Testing Structure and Methodology
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Question 1 - Testing Structure and Methodology
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#test-data-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Data Preparation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixtures
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Cases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-wise-equality-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column-Wise Equality Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floating-point-precision-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Floating Point Precision Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validating-session_is_nok-handling-missing-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validating session_is_nok - Handling Missing Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leave-exercise-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leave Exercise Validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-column-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      String Column Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matching-for-ambiguous-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Matching for Ambiguous Cases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-and-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion and Considerations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Question_2a/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Question 2a
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Question_2b/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Question 2b
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Modules Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Modules Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/chat/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    chat
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/config/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/data/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/io/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    io
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/main/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    main
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/model/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    model
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modules/transform/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    transform
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#test-data-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Data Preparation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fixtures
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Cases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Test Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#column-wise-equality-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Column-Wise Equality Tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floating-point-precision-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Floating Point Precision Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validating-session_is_nok-handling-missing-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validating session_is_nok - Handling Missing Values
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leave-exercise-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leave Exercise Validation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#string-column-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      String Column Handling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matching-for-ambiguous-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Matching for Ambiguous Cases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-and-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion and Considerations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="question-1-testing-structure-and-methodology">Question 1 - Testing Structure and Methodology</h1>
+<p>This document outlines the testing strategy used for validating the <code>transform_features_py</code> function. The test suite is built using <code>pytest</code>. It leverages parameterized tests and fixtures.</p>
+<p>Tests are located in <code>tests/data_test.py</code>.</p>
+<h2 id="test-data-preparation">Test Data Preparation</h2>
+<p>Two key datasets are used in the tests:
+- <strong><code>Expected Dataframe</code></strong>: The expected transformed dataset loaded from a pre-generated Parquet file (<code>features_expected.parquet</code>), which serves as a benchmark.
+- <strong><code>Result Dataframe</code></strong>: The actual transformed dataset generated by running <code>transform_features_py()</code>.</p>
+<h2 id="fixtures">Fixtures</h2>
+<p>To avoid redundant computations and improve efficiency, two session-scoped fixtures are used:
+- <code>expected_df</code>: Loads and preprocesses the expected dataset once per test session.
+- <code>result_df</code>: Runs the transformation function once per test session and stores the result.
+- <code>exercise_with_most_incorrect_df</code>: Loads the pre-generated Parquet file containing two columns, <code>exercise_with_most_incorrect_trans</code> (from the original dataset) and <code>exercise_with_most_incorrect_session</code> (from the original dataset).</p>
+<p>Setting up a scope for the fixtures, via the <code>@pytest.fixture(scope="session")</code> decorator, ensures that the datasets are loaded and processed only once per test session, which increases tests speed.</p>
+<p>Both datasets are reset to have sequential indexing and sorted based on the <code>session_group</code> column to maintain consistency in comparisons.</p>
+<p>To make sure that the produced output was correct, the whole dataset is compared.</p>
+<p><strong>Noticeable Anti-Pattern</strong>: the tested function's result is used as a fixture, which is not  best practice (I've never seen it before). This is because the dataset is large enough that it would take too long to run the function for all tests. This way, the function is only run once per test session, significantly improving performance.</p>
+<pre><code class="language-python">@pytest.fixture(scope=&quot;session&quot;)
+def result_df():
+    df = transform_features_py().reset_index(drop=True).sort_values(&quot;session_group&quot;)
+    return df
+</code></pre>
+<h2 id="test-cases">Test Cases</h2>
+<h3 id="column-wise-equality-tests">Column-Wise Equality Tests</h3>
+<p>Parameterized tests ensure that each specified column in the transformed dataset matches the expected values exactly. The following columns are checked: <code>session_group</code>, <code>patient_id</code>, <code>patient_name</code>, <code>patient_age</code>, <code>pain</code>, <code>fatigue</code>, <code>therapy_name</code>, <code>session_number</code>, <code>leave_session</code>, <code>quality</code>, <code>quality_reason_movement_detection</code>, <code>quality_reason_my_self_personal</code>, <code>quality_reason_other</code>, <code>quality_reason_exercises</code>, <code>quality_reason_tablet</code>, <code>quality_reason_tablet_and_or_motion_trackers</code>, <code>quality_reason_easy_of_use</code>, <code>quality_reason_session_speed</code>, <code>prescribed_repeats</code>, <code>training_time</code>, <code>number_exercises</code>, <code>number_of_distinct_exercises</code>.</p>
+<p>The test function <code>test_transform_features_py_column</code> ensures that all values in these columns match using <code>numpy.testing.assert_array_equal</code>.</p>
+<pre><code class="language-python">@pytest.mark.parametrize(&quot;column&quot;,[
+    &quot;session_group&quot;,
+    ...
+    &quot;number_of_distinct_exercises&quot;,
+])
+def test_transform_features_py_column(result_df, expected_df, column):
+    assert_array_equal(result_df[column].values, expected_df[column].values)
+</code></pre>
+<h3 id="floating-point-precision-test">Floating Point Precision Test</h3>
+<p>Computational errors with floating points are mitigated by scaling the <code>perc_correct_repeats</code> column by 10,000 (to account for 2 decimal places) and converting it to an integer before comparison (<code>test_perc_correct_repeats</code>). This technique is common practice in financial computing.</p>
+<pre><code class="language-python">def test_perc_correct_repeats(result_df, expected_df):
+    # computers don't like floats, so we multiply by 10,000 and convert to int
+    # this will give us 2 decimal places precision
+    assert_array_equal(
+        (result_df[&quot;perc_correct_repeats&quot;].values * 10000.0).astype(int),
+        (expected_df[&quot;perc_correct_repeats&quot;].values * 10000.0).astype(int))
+</code></pre>
+<h3 id="validating-session_is_nok-handling-missing-values">Validating <code>session_is_nok</code> - Handling Missing Values</h3>
+<p>The <code>session_is_nok</code> column may contain missing values. The test <code>test_session_is_nok</code> replaces NaN values with <code>-1</code> before asserting equality, thus treating the boolean column as an integer. This is to prevent <code>assert_array_equal</code> from failing due to missing values.</p>
+<pre><code class="language-python">def test_session_is_nok(result_df, expected_df):
+    assert_array_equal(
+        result_df[&quot;session_is_nok&quot;].fillna(-1).values,
+        expected_df[&quot;session_is_nok&quot;].fillna(-1).values
+    )
+</code></pre>
+<h3 id="leave-exercise-validation">Leave Exercise Validation</h3>
+<p>The <code>leave_exercise_*</code> columns are treated as integers to facilitate comparison.</p>
+<pre><code class="language-python">@pytest.mark.parametrize(&quot;column&quot;,[
+    &quot;leave_exercise_system_problem&quot;,
+    ...
+    &quot;leave_exercise_difficulty&quot;,
+])
+def test_leave_exercise(result_df, expected_df, column):
+    assert_array_equal(
+        result_df[column].values.astype(int),
+        expected_df[column].values.astype(int)
+    )
+</code></pre>
+<h3 id="string-column-handling">String Column Handling</h3>
+<p>Columns containing string values, such as <code>first_exercise_skipped</code>, are compared after filling missing values with a placeholder (<code>-</code>).</p>
+<pre><code class="language-python">def test_identify_first_exercise_skipped(result_df, expected_df):
+    assert_array_equal(
+        result_df[&quot;first_exercise_skipped&quot;].fillna(&quot;-&quot;).values,
+        expected_df[&quot;first_exercise_skipped&quot;].fillna(&quot;-&quot;).values
+    )
+</code></pre>
+<h3 id="matching-for-ambiguous-cases">Matching for Ambiguous Cases</h3>
+<p>For <code>exercise_with_most_incorrect</code>, an exact match is not required since multiple exercises may share the same number of incorrect attempts. Instead, the test asserts that at least one of the columns matches.</p>
+<pre><code class="language-python">def test_identify_most_incorrect_exercise(result_df, exercise_with_most_incorrect_df):
+    # mast match a least one
+    trans_col = result_df[&quot;exercise_with_most_incorrect&quot;].fillna(&quot;-&quot;).values ==\
+    exercise_with_most_incorrect_df[&quot;exercise_with_most_incorrect_trans&quot;].fillna(&quot;-&quot;).values
+
+    session_col = result_df[&quot;exercise_with_most_incorrect&quot;].fillna(&quot;-&quot;).values ==\
+    exercise_with_most_incorrect_df[&quot;exercise_with_most_incorrect_session&quot;].fillna(&quot;-&quot;).values
+
+    assert np.all((trans_col + session_col) &gt; 0)
+</code></pre>
+<h2 id="conclusion-and-considerations">Conclusion and Considerations</h2>
+<p>The test suite verifies the correctness of the <code>transform_features_py</code> function by comparing the result with the expected values. It uses parameterized tests and fixtures to handle the data and assertions. It breaks down the tests into smaller, focused tests, to address specific cases.</p>
+<p>In addition, all functions constituting the <code>transform_features_py</code> function should also be tested, to ensure that they work correctly and that the output is as expected.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
