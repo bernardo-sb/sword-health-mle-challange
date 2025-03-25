@@ -112,6 +112,8 @@ Follow the instructions in the [uv repository](https://github.com/astral-sh/uv) 
 
 Documentation is powered by mkdocs. Configuration is in [mkdocs.yml](mkdocs.yml).
 
+You can either read the documentation on your browser (using built docs) or read it on your IDE directly from files.
+
 ### Building Documentation
 
 To build the documentation to target directory, run:
