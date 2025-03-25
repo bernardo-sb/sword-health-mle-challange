@@ -17,7 +17,7 @@ The proposed solution is an AI-powered system that generates personalized messag
 
 ### Key Features
 
-- AI-generated messages tailored to session outcomes (`ok` or `nok`).
+- AI-generated messages tailored to session outcomes.
 - Editable suggestions for PTs to customize before sending.
 - Context-aware personalization using patient history.
 - Compliance with tone, structure, and engagement guidelines.
@@ -30,60 +30,60 @@ The proposed solution is an AI-powered system that generates personalized messag
 |----------------|--------|----------------|
 | **PT message drafting time** | >50% time saved per message | Compare timestamps between message generation and sending before and after implementation; track average time spent in message editor |
 | **PT adoption rate** | >80% of messages accepted or minimally edited | Track percentage of AI-generated messages that are sent with no edits or minimal edits (<20% content change) |
-| **Patient engagement** | 10-15% increase in session adherence | Compare session completion rates before and after implementation; measure percentage of scheduled sessions completed within recommended timeframe |
+| **Patient engagement** | >10% increase in session adherence | Compare session completion rates before and after implementation; measure percentage of scheduled sessions completed within recommended timeframe |
 | **Message rejection rate** | <5% of messages rejected | Track percentage of AI-generated messages that PTs discard and write from scratch instead |
-| **Patient satisfaction** | >85% positive feedback on communication quality | Survey patients on communication quality; analyze sentiment in patient responses to PT messages |
+| **Patient satisfaction** | >95% positive feedback on communication quality | Survey patients on communication quality; analyze sentiment in patient responses to PT messages |
 | **Cost efficiency** | <$0.10 average cost per message generated | Calculate total API costs and infrastructure expenses divided by number of messages generated |
 
 ### Objectives and Key Results (OKRs)
 
 #### Objective 1: Optimize PT Workflow Efficiency
-- **KR1**: Reduce message drafting time by 60% within 3 months of full deployment
-- **KR2**: Decrease average time spent on patient communication by 40% per PT within 6 months
-- **KR3**: Increase PT capacity (patients per PT) by 25% within 9 months
+- **KR1**: Reduce message drafting time by >50% within 3 months of full deployment
+- **KR2**: Decrease average time spent on patient communication by 80% per PT within 6 months
+- **KR3**: Increase PT capacity (patients per PT) by 20% within 9 months
 
 #### Objective 2: Enhance Message Quality and Consistency
-- **KR1**: Achieve 85% message acceptance rate (without edits) by PTs within 4 months
-- **KR2**: Maintain message quality score of 4.5/5 based on PT feedback
-- **KR3**: Reduce message guideline violations by 90% compared to manual messaging
+- **KR1**: Achieve >80% message acceptance rate (without edits) by PTs within 3 months
+- **KR2**: Maintain message quality score of 4/5 based on PT feedback
+- **KR3**: Achieve message rejection rate by <5% compared to manual messaging
 
 #### Objective 3: Improve Patient Engagement and Outcomes
 - **KR1**: Increase patient session adherence by 15% within 6 months
-- **KR2**: Improve patient satisfaction scores related to PT communication by 20%
+- **KR2**: Achieve patient satisfaction scores of >95% related to PT communication
 - **KR3**: Reduce patient program dropout rates by 10% within 9 months
 
 #### Objective 4: Ensure System Reliability and Scalability
 - **KR1**: Achieve 99.9% system uptime
 - **KR2**: Maintain message generation latency under 3 seconds for 95% of requests
-- **KR3**: Support 3x growth in message volume without performance degradation
+- **KR3**: Support 3x growth in message volume without performance degradation over 12 months
 
 ## Methodology
 
-### AI Model Selection
+### AI Model Selection & Workflow
 
 - **Primary Model**: GPT-4o-mini (fast and cheap) via OpenAI's API for message generation.
-- **Fallback Model**: GPT-4o (more powerful, but more expensive) for ensuring quality.
+- **Fallback Model**: GPT-4o (more powerful, but much more expensive) for ensuring quality.
 - **LLM Workflow**: Use LLM workflows (graphs) for enhanced context and quality (i.e. states and transitions).
 - **Contextual Retrieval**: Sessions integration for efficient patient history access; relational database for patient history.
-- **Fine-tuning Strategy** (Optional): Collect and annotate high-quality PT messages for fine-tuning; might not be reuired if prompts, context and model are powerful enough.
+- **Fine-tuning Strategy** (Optional): Collect and annotate high-quality PT messages for fine-tuning; might not be required if prompts, context and model are powerful enough.
 
 ### Message Generation Pipeline
 
-1. **Input Preparation**: Gather session results (with `ok`/`nok`), previous interactions, and patient engagement data.
-2. **Prompt Engineering**: Construct structured prompts to guide the model's output.
+1. **Input Preparation**: Gather session results, previous interactions, and patient engagement data.
+2. **Prompt Engineering**: Create structured prompts to guide the model's output.
 3. **Model Inference**: Generate message suggestions using OpenAI's API.
-4. **Post-Processing - Guardrails**: Validate message format, remove redundancy, and apply business rules.
+4. **Post-Processing - Guardrails**: Validate message format, remove redundancy, and apply business rules (continuous improvements of LLMs can potentially remove this task combined with human in the loop).
 5. **UI Integration**: Display the message with options to accept, edit, or reject.
 6. **Feedback Loop**: Capture PT feedback for continuous model improvement.
 
 ### Data Requirements
 
-- **Session Data**: Exercise results, completion metrics, and session classification
-- **Patient History**: Previous messages, session patterns, reported issues
-- **PT Preferences**: Communication style, common edits, rejection patterns
-- **Guideline Database**: Structured repository of messaging best practices
+- **Session Data**: Exercise results, completion metrics, and session classification.
+- **Patient History**: Previous messages, session patterns, reported issues.
+- **PT Preferences**: Communication style, common edits, rejection patterns.
+- **Guideline Database**: Structured repository of messaging best practices.
 
-### Compliance Considerations
+### Data Compliance
 
 - Ensure patient data privacy (compliance with GDPR, healthcare data regulation (e.g. HIPAA) and others).
 - Maintain a human-in-the-loop approach for PT oversight.
@@ -99,36 +99,44 @@ The proposed solution is an AI-powered system that generates personalized messag
 ### Technical Stack
 
 - **Backend**: Python (FastAPI) for API endpoints with async support.
-- **Frontend**: React components integrated with existing PT portal.
+- **Frontend**: React/Angular components integrated with existing PT portal.
 - **Database**:
   - PostgreSQL for patient session history and structured data.
   - Redis for caching frequent requests and rate limiting.
   - Potential add-on: PGVector or Qdrant for vector embeddings and semantic search.
-- **Cloud Provider**: AWS (Lambda, S3, DynamoDB) for scalable infrastructure.
+- **Cloud Provider**: AWS (Lambda, S3, RDS, etc) for scalable infrastructure.
 - **CI/CD**: GitHub Actions for deployment automation with canary releases.
 - **Monitoring**:
   - AWS CloudWatch for infrastructure metrics.
-  - Datadog for application performance monitoring.
+  - Datadog or New Relic for application performance monitoring.
   - Prometheus for custom metrics collection.
   - Grafana for visualization.
 - **Logging**: AWS CloudWatch and/or ELK stack (Elasticsearch, Logstash, Kibana) for structured logging.
-- **Security**: AWS KMS for encryption, AWS WAF for API protection.
+- **Security**: AWS KMS or Hashicorp Vault for encryption, AWS WAF for API protection.
+
+#### Application Performance Metrics (APMs)
+
+- **System Uptime**: 99.9% uptime SLA.
+- **API Latency**: <3 seconds for 95th percentile.
+- **Error Rate**: <1% of requests (migh be hard to achieve given strong reliance on OpenAI).
+- **Resource Utilization**: Monitor CPU, memory, and disk usage.
 
 ### Data Privacy and Governance
 
 - **Data Minimization**: Process only necessary patient data for message generation.
-- **Encryption**: End-to-end encryption for data in transit and at rest.
+- **Encryption**: End-to-end encryption for data at rest (and potentially in transit).
 - **Access Control**: Role-based access with principle of least privilege.
 - **Audit Trail**: Comprehensive logging of all data access and modifications.
-- **Retention Policy**: Clearly defined data retention and deletion schedules.
-- **Data Processing Agreement**: Compliance with OpenAI's terms of service.
+- **Retention Policy**: Clearly defined data retention and deletion schedules (e.g. right to be forgotten).
+- **Data Processing Agreement**: Use OpenAI's Enterprise.
 
 ### Monitoring and Evaluation Strategy
 
 - **Model Performance**:
   - Message acceptance rate
-  - Edit distance metrics
-  - Sentiment analysis of PT feedback
+  - Edit distance metrics (e.g. Levenshtein distance)
+  - LLM as a Judge
+  - Cosine similarity between PT edits and original messages
 - **System Performance**:
   - API latency and throughput
   - Error rates and types
@@ -140,9 +148,9 @@ The proposed solution is an AI-powered system that generates personalized messag
 
 ### Deployment Considerations
 
-- Initial rollout to a small cohort of PTs for feedback (10% of team).
+- Initial rollout to a small cohort of PTs for feedback (e.g. 10% of team).
 - A/B testing of different prompt strategies with the pilot group.
-- Gradual expansion based on performance metrics (20% > 50% > 100%).
+- Gradual expansion based on performance metrics (e.g. engagement metrics, PT efficiency).
 - Ongoing model monitoring and improvement cycle.
 - Feature flag system to quickly disable AI generation if issues arise.
 
@@ -169,45 +177,59 @@ The proposed solution is an AI-powered system that generates personalized messag
 | Component                   | Estimated Monthly Cost | Notes                                      |
 | --------------------------- | ---------------------- | ------------------------------------------ |
 | OpenAI API Usage            | $1,500 - $3,000        | Based on 50,000 messages/month, varies with length |
-| AWS Infrastructure          | $800 - $1,200          | Includes Lambda, S3, DynamoDB, CloudWatch |
+| AWS Infrastructure          | $800 - $1,200          | Includes Lambda, S3, CloudWatch |
 | Vector Database             | $300 - $500            | Pinecone or similar service               |
 | Monitoring & Logging        | $200 - $400            | ELK stack, Datadog                        |
 | **Total Monthly Cost**      | **$2,800 - $5,100**    | **Expected to decrease with optimization** |
 
 ## Other Relevant Considerations
 
-### Potential Shortcuts
+The new project can leverage some Sword Health blueprints for quicker integration.
 
-- Use OpenAI's API directly before fine-tuning for faster implementation.
-- Deploy a rule-based fallback system for low-confidence AI outputs.
-- Leverage existing Sword infrastructure for quicker integration.
-- Implement a template-based approach for common message types before full AI solution.
+It should also deploy a rule-based fallback system for low-confidence AI outputs.
 
 ### Risks & Mitigation
 
-| Risk                          | Impact | Probability | Mitigation Strategy                          |
-| ----------------------------- | ------ | ----------- | -------------------------------------------- |
-| **AI Output Quality**         | High   | Medium      | Continuous monitoring, human review, robust testing |
-| **PT Adoption Resistance**    | High   | Medium      | User-friendly UI, training sessions, PT champions |
-| **Scalability Concerns**      | Medium | Low         | Load testing, optimize API calls, caching    |
-| **Data Privacy Breach**       | High   | Low         | End-to-end encryption, access controls, audits |
-| **OpenAI API Changes**        | Medium | Medium      | Model abstraction layer, fallback options    |
-| **Cost Overruns**             | Medium | Medium      | Budget monitoring, cost-saving optimizations |
+- **AI Output Quality**  
+  - **Impact:** High  
+  - **Probability:** Medium  
+  - **Mitigation:** Continuous monitoring, human review, robust testing  
+  - **Misc:** Recent advancements in AI have shown promise in message generation quality.
+
+- **PT Adoption Resistance**  
+  - **Impact:** High  
+  - **Probability:** Low  
+  - **Mitigation:** User-friendly UI, training sessions, PT champions  
+  - **Misc:** PTs may be resistant to change and may not be willing to use the new system. But LLM usage has skyrocketed in recent years, and the quality of AI-generated messages has improved significantly.
+
+- **Data Privacy Breach**  
+  - **Impact:** High  
+  - **Probability:** Low  
+  - **Mitigation:** End-to-end encryption, access controls, audits
+  - **Misc:** Data privacy concerns are less likely since the system will only process patient data for message generation using OpenAI's Enterprise, which has strict data privacy and security measures, and Sword Health's own data privacy policies.
+
+- **Cost Overruns**  
+  - **Impact:** Medium  
+  - **Probability:** Medium  
+  - **Mitigation:** Budget monitoring, cost-saving optimizations  
+  - **Misc:** Cost overruns are less likely since the system is not expected to handle a large number of users.
+
+- **Missing Timeline**  
+  - **Impact:** Medium
+  - **Probability:** Medium  
+  - **Mitigation:** Detailed timeline, phased rollout
+  - **Misc:** Missing timeline is not very likely since the system is not overly complex.
+
+- **Scalability Concerns**  
+  - **Impact:** Medium
+  - **Probability:** Medium
+  - **Mitigation:** Load testing, optimize API calls, caching
+  - **Misc:** Scalability concerns are less likely since the system is not expected to handle a large number of users. But OpenAI has had issues with scalability and outages in the past.
 
 ### Future Enhancements
 
 - **Automated feedback loop** to refine AI-generated messages.
-- **Multilingual support** for global patient reach.
-- **Patient sentiment analysis** to improve engagement strategies.
-- **Smart scheduling** of check-ins based on adherence patterns.
-- **Voice-to-text integration** for PTs to quickly customize messages.
+- **Multilingual support** for global patient reach - even though SWORD Health is currently US based, there are many employees which English is not their primary language.
+- **PT Voice Twin** to provide a human-like experience.
 - **Message effectiveness analytics** to correlate with patient outcomes.
 - **Expanded message types** beyond post-session feedback.
-
-### Success Criteria for Production Release
-
-1. Message acceptance rate ≥ 80% in pilot group
-2. PT time savings ≥ 50% compared to manual messaging
-3. Zero high-severity bugs or data privacy issues
-4. System latency < 3 seconds for 95th percentile
-5. Positive feedback from ≥ 75% of pilot PTs
