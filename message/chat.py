@@ -129,7 +129,7 @@ async def run_chat(session_group: str):
             if acceptance == "accept":
                 chat_history.append({"role": "assistant", "content": message})
             if acceptance == "edit":
-                category, feedback = prompt_for_feedback_feedback()
+                category, feedback = prompt_for_edit_feedback()
                 
                 # NOTE: could only save accepted messages instead (e.g. use temp_chat_history)
                 chat_history.append({"role": "system", "content": prompts["SYSTEM_FEEDBACK"].format(feedback_prompt=FEEDBACK_PROMPT_MAP[FeedbackOption(category)])})
