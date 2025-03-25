@@ -112,25 +112,27 @@ Follow the instructions in the [uv repository](https://github.com/astral-sh/uv) 
 
 Documentation is powered by mkdocs. Configuration is in [mkdocs.yml](mkdocs.yml).
 
-You can either read the documentation on your browser (using built docs) or read it on your IDE directly from files.
+You can either read the documentation on your browser (`mkdocs serve`) or read it on your IDE directly from files.
 
-### Building Documentation
+### Structure
 
-To build the documentation you need to have dev dependencies installed (`make dev`). To build to target directory (`docs_build`), run:
+The documentation is structured as follows:
 
-```bash
-mkdocs build -d docs_build
-```
 
-### Opening Built Documentation
+- Home
+- Question 1
+- Question 1 - Testing Structure and Methodology
+- Question 2a
+- Question 2b
+- Modules Reference:
+    - chat
+    - config
+    - data
+    - io
+    - main
+    - model
+    - transform
 
-To open the built documentation you must open the `docs_build/index.html` file on your browser.
-
-On mac:
-
-```bash
-open docs_build/index.html
-```
 
 ### Serving Documentation
 
@@ -138,4 +140,14 @@ To serve the documentation on local host, run:
 
 ```bash
 mkdocs serve
+```
+
+Docs become available at [http://127.0.0.1:8000/](http://127.0.0.1:8000/).
+
+### Building Documentation
+
+To build the documentation you need to have dev dependencies installed (`make dev`). To build to target directory (`docs_build`), run:
+
+```bash
+mkdocs build -d docs_build
 ```
