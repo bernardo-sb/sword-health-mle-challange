@@ -176,3 +176,5 @@ cython_debug/
 .chats
 
 ml-engineer-test
+
+.DS_Store
