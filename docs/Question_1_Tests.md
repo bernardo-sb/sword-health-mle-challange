@@ -4,6 +4,14 @@ This document outlines the testing strategy used for validating the `transform_f
 
 Tests are located in `tests/data_test.py`.
 
+## Running Tests
+
+To run the tests, you need to have dev dependencies installed (`make dev`). To run the tests, run:
+
+```bash
+pytest tests/data_test.py
+```
+
 ## Test Data Preparation
 Two key datasets are used in the tests:
 - **`Expected Dataframe`**: The expected transformed dataset loaded from a pre-generated Parquet file (`features_expected.parquet`), which serves as a benchmark.
