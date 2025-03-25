@@ -312,6 +312,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#opening-built-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opening Built Documentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#serving-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       Serving Documentation
@@ -714,6 +723,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#opening-built-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opening Built Documentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#serving-documentation" class="md-nav__link">
     <span class="md-ellipsis">
       Serving Documentation
@@ -748,10 +766,10 @@
 <p>Solutions are provided as code. Details and explanations are provided in the <code>docs</code> directory.</p>
 <h2 id="index">Index</h2>
 <ul>
-<li><a href="question_1.ipynb">Question 1</a>: Step-by-step transformation walkthrough in a Jupyter Notebook.</li>
+<li><a href="Question_1/">Question 1</a>: Step-by-step transformation walkthrough in a Jupyter Notebook.</li>
 <li><a href="Question_1_Tests/">Question 1 - Testing Structure and Methodology</a>: Testing structure and methodology.</li>
-<li><a href="question_2a.md">Question 2a</a>: Solution and explanation.</li>
-<li><a href="question_2b.md">Question 2b</a>: Solution and explanation.</li>
+<li><a href="Question_2a/">Question 2a</a>: Solution and explanation.</li>
+<li><a href="Question_2b/">Question 2b</a>: Solution and explanation.</li>
 </ul>
 <hr />
 <h2 id="process-overview">Process Overview</h2>
@@ -839,12 +857,18 @@
 <hr />
 <h3 id="documentation">Documentation</h3>
 <p>Documentation is powered by mkdocs. Configuration is in <a href="mkdocs.yml">mkdocs.yml</a>.</p>
+<p>You can either read the documentation on your browser (using built docs) or read it on your IDE directly from files.</p>
 <h3 id="building-documentation">Building Documentation</h3>
-<p>To build the documentation to target directory, run:</p>
-<pre><code class="language-bash">mkdocs build
+<p>To build the documentation you need to have dev dependencies installed (<code>make dev</code>). To build to target directory (<code>docs_build</code>), run:</p>
+<pre><code class="language-bash">mkdocs build -d docs_build
+</code></pre>
+<h3 id="opening-built-documentation">Opening Built Documentation</h3>
+<p>To open the built documentation you must open the <code>docs_build/index.html</code> file on your browser.</p>
+<p>On mac:</p>
+<pre><code class="language-bash">open docs_build/index.html
 </code></pre>
 <h3 id="serving-documentation">Serving Documentation</h3>
-<p>To serve the documentation, run:</p>
+<p>To serve the documentation on local host, run:</p>
 <pre><code class="language-bash">mkdocs serve
 </code></pre>
 

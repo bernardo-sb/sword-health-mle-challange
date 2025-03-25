@@ -454,6 +454,66 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interaction-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interaction Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interaction Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-prompt-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Prompt - Startup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-edits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling Edits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-rejections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling Rejections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hanling-empty-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hanling Empty Category
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-action-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling Action Errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enhancement-opportunities" class="md-nav__link">
     <span class="md-ellipsis">
       Enhancement Opportunities
@@ -916,6 +976,66 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#interaction-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interaction Examples
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interaction Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-prompt-startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initial Prompt - Startup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-edits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling Edits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-rejections" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling Rejections
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hanling-empty-category" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hanling Empty Category
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handling-action-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handling Action Errors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enhancement-opportunities" class="md-nav__link">
     <span class="md-ellipsis">
       Enhancement Opportunities
@@ -1004,7 +1124,7 @@
 <p>Code components:
 - <code>FeedbackOption</code> enum: Categories for feedback (<code>tone</code>, <code>generic</code>, <code>engagement</code>, <code>factuality</code>, <code>other</code>)
 - <code>prompt_for_acceptance()</code>: CLI interface for message review
-- <code>prompt_for_feedback()</code>: CLI interface for feedback collection
+- <code>prompt_for_edit_feedback()</code>: CLI interface for feedback collection
 - <code>llm()</code>: Interface to the chat model
 - <code>run_chat()</code>: Main chat loop that orchestrates the entire flow</p>
 <h3 id="2-iopy">2. <code>io.py</code></h3>
@@ -1154,6 +1274,66 @@ get-message:
 - <code>FACTUALITY_PROMPT</code>: Ensures accuracy based on session data
 - <code>OTHER_PROMPT</code>: Catch-all for specific suggestions</p>
 <hr />
+<h2 id="interaction-examples">Interaction Examples</h2>
+<p>In this section, we will go through a few examples of chat interactions. We use the same session group <code>++//wixk6DpH8NMGvqLqvpzWbzY=</code> for all examples.</p>
+<h3 id="initial-prompt-startup">Initial Prompt - Startup</h3>
+<p>In this example we run the chat with session group <code>++//wixk6DpH8NMGvqLqvpzWbzY=</code>:</p>
+<pre><code class="language-bash">make get-message session_group=++//wixk6DpH8NMGvqLqvpzWbzY=
+</code></pre>
+<p>The chat will start with the base prompt and the session data.</p>
+<p><img alt="initial_prompt" src="../assets/initial_prompt.png" /></p>
+<h3 id="handling-edits">Handling Edits</h3>
+<p>This example shows how the chat handles edits with feedback. It purposly show how it handles a bad edit.</p>
+<ol>
+<li>The app starts a new chat session with the base prompt and session data.</li>
+<li>The LLM generates a message, which is displayed to the therapist.</li>
+<li>The therapist reviews the message and decides to edit it.</li>
+<li>The therapist misspell the word <code>tone</code> as <code>ton</code>.</li>
+<li>The app prompts for the category again.</li>
+<li>The therapist selects <code>tone</code>.</li>
+<li>The app prompts for the feedback.</li>
+<li>The therapist provides feedback.</li>
+<li>The app prompts for the acceptance.</li>
+<li>The therapist accepts the message.</li>
+<li>The app saves the chat history (implicit).</li>
+</ol>
+<p><img alt="edit" src="../assets/handle_edit.png" /></p>
+<h3 id="handling-rejections">Handling Rejections</h3>
+<p>This example shows how the chat handles rejections. We purposly provide an empty feedback to show how the app handles it.</p>
+<ol>
+<li>The app starts a new chat session with the base prompt and session data.</li>
+<li>The LLM generates a message, which is displayed to the therapist.</li>
+<li>The therapist reviews the message and decides to reject it.</li>
+<li>The app prompts for an answer.</li>
+<li>The therapist provides empty feedback.</li>
+<li>The app prompts for an answer again.</li>
+<li>The therapist provides an answer.</li>
+<li>The app saves the chat history (implicit).</li>
+</ol>
+<p><img alt="rejection" src="../assets/handle_reject.png" /></p>
+<h3 id="hanling-empty-category">Hanling Empty Category</h3>
+<p>This example shows how the chat handles empty category inputs.</p>
+<ol>
+<li>The app starts a new chat session with the base prompt and session data.</li>
+<li>The LLM generates a message, which is displayed to the therapist.</li>
+<li>The therapist reviews the message and decides to edit it.</li>
+<li>The app prompts for the category.</li>
+<li>The therapist provides an empty category.</li>
+<li>The app defaults to <code>other</code>.</li>
+<li>The app prompts for the feedback.</li>
+<li>The therapist provides empty feedback.</li>
+<li>The app prompts for feedback again.</li>
+<li>The therapist provides feedback, asking for more emojis.</li>
+<li>The app generates a new message.</li>
+<li>The app prompts for the acceptance.</li>
+<li>The therapist accepts the message.</li>
+<li>The app saves the chat history (implicit).</li>
+</ol>
+<p><img alt="empty_category" src="../assets/more_emojis.png" /></p>
+<h3 id="handling-action-errors">Handling Action Errors</h3>
+<p>This example shows how the chat handles wrong action inputs
+The user inputs invalid and empty inputs.</p>
+<p><img alt="error" src="../assets/action_handling.png" /></p>
 <h2 id="enhancement-opportunities">Enhancement Opportunities</h2>
 <h3 id="asynchronous-io-optimization">Asynchronous I/O Optimization</h3>
 <p><strong>Issues:</strong>
