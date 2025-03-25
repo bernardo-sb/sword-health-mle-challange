@@ -7,6 +7,7 @@ Solutions are provided as code. Details and explanations are provided in the `do
 ## Index
 
 - [Question 1](question_1.ipynb): Step-by-step transformation walkthrough in a Jupyter Notebook.
+- [Question 1 - Testing Structure and Methodology](Question_1_Tests.md): Testing structure and methodology.
 - [Question 2a](question_2a.md): Solution and explanation.
 - [Question 2b](question_2b.md): Solution and explanation.
 
@@ -101,14 +102,3 @@ Follow the instructions in the [uv repository](https://github.com/astral-sh/uv) 
 ```
 
 ---
-
-## Data Transformation Observations
-
-- There are mismatches between the provided expected values and input values.
-- The input does not contain all records present in the output, suggesting different samples.
-- Only one group is present in the expected output.
-
-```python
->>> (df["session_group"].unique() == df_expected["session_group"]).sum()
-1
-```
