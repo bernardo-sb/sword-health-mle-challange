@@ -6,10 +6,10 @@ Solutions are provided as code. Details and explanations are provided in the `do
 
 ## Index
 
-- [Question 1](question_1.ipynb): Step-by-step transformation walkthrough in a Jupyter Notebook.
+- [Question 1](Question_1.ipynb): Step-by-step transformation walkthrough in a Jupyter Notebook.
 - [Question 1 - Testing Structure and Methodology](Question_1_Tests.md): Testing structure and methodology.
-- [Question 2a](question_2a.md): Solution and explanation.
-- [Question 2b](question_2b.md): Solution and explanation.
+- [Question 2a](Question_2a.md): Solution and explanation.
+- [Question 2b](Question_2b.md): Solution and explanation.
 
 ---
 
