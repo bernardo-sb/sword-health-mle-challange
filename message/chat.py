@@ -45,8 +45,8 @@ def prompt_for_acceptance() -> str:
 
     return response
     
-def prompt_for_feedback() -> tuple[str, str]:
-    """Prompt user for feedback.
+def prompt_for_edit_feedback() -> tuple[str, str]:
+    """Prompt user edit for feedback.
 
     Returns
     -------
@@ -55,16 +55,17 @@ def prompt_for_feedback() -> tuple[str, str]:
     """
     category = None
     while not category:
-        category = input("Editing Reasons (optional) - [tone, generic, engagement, factuality, other]: ").lower().strip()
+        category = input("Editing Reasons (optional) - [tone, generic, engagement, factuality, other]: ").strip().lower()
         try:
             category = "other" if not category else category
             category = FeedbackOption(category)
         except ValueError:
             print("Invalid category. Please enter 'tone', 'generic', 'engagement', 'factuality', or 'other'.")
+            category = None
     
     feedback = None
     while not feedback:
-        feedback = input("Feedback: ").strip().lower()
+        feedback = input("Feedback: ").strip()
         if not feedback:
             print("Feedback cannot be empty.")
     return category, feedback
@@ -128,18 +129,20 @@ async def run_chat(session_group: str):
             if acceptance == "accept":
                 chat_history.append({"role": "assistant", "content": message})
             if acceptance == "edit":
-                category, feedback = prompt_for_feedback()
+                category, feedback = prompt_for_feedback_feedback()
                 
                 # NOTE: could only save accepted messages instead (e.g. use temp_chat_history)
-                chat_history.append({"role": "system", "content": SYSTEM_FEEDBACK.format(feedback_prompt=FEEDBACK_PROMPT_MAP[FeedbackOption(category)])})
-                chat_history.append({"role": "user", "content": EXTRA_FEEDBACK.format(extra_feedback=feedback)})
+                chat_history.append({"role": "system", "content": prompts["SYSTEM_FEEDBACK"].format(feedback_prompt=FEEDBACK_PROMPT_MAP[FeedbackOption(category)])})
+                chat_history.append({"role": "user", "content": prompts["EXTRA_FEEDBACK"].format(extra_feedback=feedback)})
 
-                message = llm(chat_history)
-
-                print("Message:", message)
                 print("-"*50)
             if acceptance == "reject":
-                message = input("Write your answer: ")
+                # overwrite llm message
+                message = None
+                while not message:
+                    message = input("Write your answer: ")
+                    if not message.strip():
+                        print("Message cannot be empty!")
                 chat_history.append({"role": "assistant", "content": message})
 
         print()
