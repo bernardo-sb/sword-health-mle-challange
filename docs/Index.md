@@ -120,6 +120,16 @@ To build the documentation to target directory, run:
 mkdocs build
 ```
 
+### Opening Built Documentation
+
+To open the built documentation you must open the `docs_build/index.html` file on your browser.
+
+On mac:
+
+```bash
+open docs_build/index.html
+```
+
 ### Serving Documentation
 
 To serve the documentation, run:
