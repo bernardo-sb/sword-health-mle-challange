@@ -24,7 +24,8 @@ Solutions are provided as code. Details and explanations are provided in the `do
 - Resolved the issue by modifying the `Makefile` to use Python 3.11.
 - Used `uv` as the package manager.
 - Created a `dev` extra in `setup.py`.
-    - Added `pytest` to the `dev` extra in `setup.py`.
+    - Added `pytest` to `dev`.
+    - Added `mkdocs`, `mkdocs-material`, `mkdocs-jupyter`, and `mkdocstrings[python]` to `dev`.
 - Created a `dev` target in the `Makefile` for development setup.
 - Added a `get-message` command in the `Makefile` to run with a session group parameter.
 
@@ -69,7 +70,7 @@ Follow the instructions in the [uv repository](https://github.com/astral-sh/uv) 
 ### `setup.py` Modifications
 
 ```diff
-@@ -12,6 +12,12 @@ packages = [
+@@ -12,6 +12,16 @@ packages = [
      "pyarrow==14.0.2",
      "SQLAlchemy==1.4.46",
      "typer==0.9.0",
@@ -78,11 +79,15 @@ Follow the instructions in the [uv repository](https://github.com/astral-sh/uv) 
 +
 +dev_packages = [
 +    "pytest",
++    "mkdocs",
++    "mkdocs-material",
++    "mkdocs-jupyter",
++    "mkdocstrings[python]",
 +    *packages,
  ]
  
  setup(
-@@ -19,7 +25,7 @@ setup(
+@@ -19,7 +29,7 @@ setup(
      version="0.1.0",
      author="Sword Health",
      author_email="ai@swordhealth.com",
@@ -91,7 +96,7 @@ Follow the instructions in the [uv repository](https://github.com/astral-sh/uv) 
      packages=find_packages(exclude=("tests", "resources")),
      install_requires=packages,
      entry_points={
-@@ -27,4 +33,7 @@ setup(
+@@ -27,4 +37,7 @@ setup(
              "message = message.main:app",
          ],
      },
@@ -102,3 +107,23 @@ Follow the instructions in the [uv repository](https://github.com/astral-sh/uv) 
 ```
 
 ---
+
+### Documentation
+
+Documentation is powered by mkdocs. Configuration is in [mkdocs.yml](mkdocs.yml).
+
+### Building Documentation
+
+To build the documentation to target directory, run:
+
+```bash
+mkdocs build
+```
+
+### Serving Documentation
+
+To serve the documentation, run:
+
+```bash
+mkdocs serve
+```

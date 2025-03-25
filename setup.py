@@ -17,7 +17,10 @@ packages = [
 
 dev_packages = [
     "pytest",
-    "openpyxl",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocs-jupyter",
+    "mkdocstrings[python]",
     *packages,
 ]
 

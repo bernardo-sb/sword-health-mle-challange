@@ -1,0 +1,28 @@
+site_name: SWORD Health MLE Challenge - Bernardo de Lemos
+theme:
+  name: material
+
+plugins:
+  - search
+  - mkdocs-jupyter
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: false
+            heading_level: 2
+
+nav:
+  - Home: index.md
+  - Question 1: Question_1.ipynb
+  - Question 1 - Testing Structure and Methodology: Question_1_Tests.md
+  - Question 2a: Question_2a.md
+  - Question 2b: Question_2b.md
+  - Modules Reference:
+      - chat: modules/chat.md
+      - config: modules/config.md
+      - data: modules/data.md
+      - io: modules/io.md
+      - main: modules/main.md
+      - model: modules/model.md
+      - transform: modules/transform.md
