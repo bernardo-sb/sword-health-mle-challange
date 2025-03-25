@@ -252,6 +252,27 @@ This example shows how the chat handles rejections. We purposly provide an empty
 
 ![rejection](assets/handle_reject.png)
 
+### Hanling Empty Category
+
+This example shows how the chat handles empty category inputs.
+
+1. The app starts a new chat session with the base prompt and session data.
+2. The LLM generates a message, which is displayed to the therapist.
+3. The therapist reviews the message and decides to edit it.
+4. The app prompts for the category.
+5. The therapist provides an empty category.
+6. The app defaults to `other`.
+7. The app prompts for the feedback.
+8. The therapist provides empty feedback.
+9. The app prompts for feedback again.
+10. The therapist provides feedback, asking for more emojis.
+11. The app generates a new message.
+12. The app prompts for the acceptance.
+13. The therapist accepts the message.
+14. The app saves the chat history (implicit).
+
+![empty_category](assets/more_emojis.png)
+
 ### Handling Action Errors
 
 This example shows how the chat handles wrong action inputs
