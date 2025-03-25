@@ -2,9 +2,11 @@ from pathlib import Path
 import pytest
 import pandas as pd
 from message.data import transform_features_py
+import numpy as np    
 from numpy.testing import assert_array_equal
 
 DATA_DIR = Path(__file__).parent.parent / "data"
+FIXTURES_DIR = Path(__file__).parent / "fixtures"
 
 @pytest.fixture(scope="session")
 def expected_df():
@@ -19,6 +21,10 @@ def result_df():
     df = transform_features_py().reset_index(drop=True).sort_values("session_group")
     return df
 
+@pytest.fixture(scope="session")
+def exercise_with_most_incorrect_df():
+    df = pd.read_parquet(FIXTURES_DIR / "df_exercise_with_most_incorrect.parquet").reset_index(drop=True).sort_values("session_group")
+    return df
 
 @pytest.mark.parametrize("column",[
     "session_group",
@@ -43,11 +49,8 @@ def result_df():
     "training_time",
     "number_exercises",
     "number_of_distinct_exercises",
-    # "exercise_with_most_incorrect",
-    # "first_exercise_skipped",
 ])
 def test_transform_features_py_column(result_df, expected_df, column):
-    # use 2 decimals
     assert_array_equal(result_df[column].values, expected_df[column].values)
 
 
@@ -86,9 +89,12 @@ def test_identify_first_exercise_skipped(result_df, expected_df):
         expected_df["first_exercise_skipped"].fillna("-").values
     )
 
-def test_identify_most_incorrect_exercise(result_df, expected_df):
-    # allow some error < 50%
-    assert sum(
-        result_df["exercise_with_most_incorrect"].fillna("-").values ==\
-            expected_df["exercise_with_most_incorrect"].fillna("-").values) >\
-                len(result_df) * 0.5
+def test_identify_most_incorrect_exercise(result_df, exercise_with_most_incorrect_df):
+    # mast match a least one
+    trans_col = result_df["exercise_with_most_incorrect"].fillna("-").values ==\
+    exercise_with_most_incorrect_df["exercise_with_most_incorrect_trans"].fillna("-").values
+    
+    session_col = result_df["exercise_with_most_incorrect"].fillna("-").values ==\
+    exercise_with_most_incorrect_df["exercise_with_most_incorrect_session"].fillna("-").values
+
+    assert np.all((trans_col + session_col) > 0)
