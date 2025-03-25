@@ -109,7 +109,7 @@ def add_reason_counts(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
 
 
 def identify_most_incorrect_exercise(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
-    """Identify exercises with problems (most incorrect, first skipped).
+    """Identify exercises with problems most incorrect.
     
     Parameters
     ----------
@@ -133,7 +133,7 @@ def identify_most_incorrect_exercise(df: pd.DataFrame, grouped: pd.DataFrame) ->
 
 
 def identify_first_exercise_skipped(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
-    """Identify the first exercise skipped by the patient.
+    """Identify the first exercise skipped.
     
     Parameters
     ----------
