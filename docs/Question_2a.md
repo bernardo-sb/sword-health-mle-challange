@@ -17,7 +17,7 @@ The main module containing all functionality:
 Code components:
 - `FeedbackOption` enum: Categories for feedback (`tone`, `generic`, `engagement`, `factuality`, `other`)
 - `prompt_for_acceptance()`: CLI interface for message review
-- `prompt_for_feedback()`: CLI interface for feedback collection
+- `prompt_for_edit_feedback()`: CLI interface for feedback collection
 - `llm()`: Interface to the chat model
 - `run_chat()`: Main chat loop that orchestrates the entire flow
 
