@@ -72,6 +72,7 @@ The application can be thought as a state machine, with distinct states: (genera
    - At end of session, `save_chat_history()` writes to disk
    - Each new session loads previous history for context
 
+![workflow](assets/chat_workflow.jpg)
 
 ### Prompts Relationships
 
