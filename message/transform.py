@@ -146,7 +146,7 @@ def add_reason_counts(df: pd.DataFrame, grouped: pd.DataFrame) -> pd.DataFrame:
         )
         grouped[f"leave_exercise_{reason}"].fillna(0, inplace=True)
 
-    grouped.reset_index(inplace=True)  # this is inneficient...
+    grouped.reset_index(inplace=True)  # this is inefficient...
     return grouped
 
 
