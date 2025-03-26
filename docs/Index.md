@@ -50,7 +50,7 @@ Follow the instructions in the [uv repository](https://github.com/astral-sh/uv) 
 +	uv pip install --upgrade pip setuptools wheel pipenv
 +	uv pip install -e .
 +
-+.PHONY: dev
++.ONESHELL:
 +dev:
 +	uv venv --python 3.11
 +	uv pip install --upgrade pip setuptools wheel pipenv
