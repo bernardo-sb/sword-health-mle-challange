@@ -2,7 +2,7 @@
 
 ## Problem/Motivation
 
-Physical Therapists (PTs) currently manually draft messages to patients following each therapy session, based on session results and predefined guidelines. This process is time-consuming and inconsistent in quality. Automating message generation will streamline PT workflows and ensure high-quality, empathetic, and engaging communication with patients.
+Physical Therapists (PTs) currently manually draft messages to patients following each therapy session, based on session results and predefined guidelines. This process is time-consuming and inconsistent in quality. Automating message generation will streamline PT workflows and ensure high-quality, empathetic and engaging communication with patients.
 
 ### Motivation
 
@@ -13,7 +13,7 @@ Physical Therapists (PTs) currently manually draft messages to patients followin
 
 ## Overview of the Solution
 
-The proposed solution is an AI-powered system that generates personalized messages for PTs to review and send. It integrates with Sword's Digital Physical Therapy platform and uses OpenAI's GPT models to create messages based on session results.
+The proposed solution is an AI-powered system that generates personalized messages for PTs to review and send. It integrates with SWORD Health's Digital Physical Therapy platform and uses OpenAI's GPT models to create messages based on session results.
 
 ### Key Features
 
@@ -32,10 +32,12 @@ The proposed solution is an AI-powered system that generates personalized messag
 | **PT adoption rate** | >80% of messages accepted or minimally edited | Track percentage of AI-generated messages that are sent with no edits or minimal edits (<20% content change) |
 | **Patient engagement** | >10% increase in session adherence | Compare session completion rates before and after implementation; measure percentage of scheduled sessions completed within recommended timeframe |
 | **Message rejection rate** | <5% of messages rejected | Track percentage of AI-generated messages that PTs discard and write from scratch instead |
-| **Patient satisfaction** | >95% positive feedback on communication quality | Survey patients on communication quality; analyze sentiment in patient responses to PT messages |
+| **Patient satisfaction** | >95% positive feedback on communication quality | Survey patients on communication quality; analyze patient feedback to PT messages |
 | **Cost efficiency** | <$0.10 average cost per message generated | Calculate total API costs and infrastructure expenses divided by number of messages generated |
 
 ### Objectives and Key Results (OKRs)
+
+OKRs reflect the success metrics and targets outlined above.
 
 #### Objective 1: Optimize PT Workflow Efficiency
 - **KR1**: Reduce message drafting time by >50% within 3 months of full deployment
@@ -61,8 +63,8 @@ The proposed solution is an AI-powered system that generates personalized messag
 
 ### AI Model Selection & Workflow
 
-- **Primary Model**: GPT-4o-mini (fast and cheap) via OpenAI's API for message generation.
-- **Fallback Model**: GPT-4o (more powerful, but much more expensive) for ensuring quality.
+- **Primary Model**: `gpt-4o-mini` (fast and cheap) via OpenAI's API for message generation.
+- **Fallback Model**: template responses and/or `gpt-4o` (more powerful, but much more expensive) for ensuring quality.
 - **LLM Workflow**: Use LLM workflows (graphs) for enhanced context and quality (i.e. states and transitions).
 - **Contextual Retrieval**: Sessions integration for efficient patient history access; relational database for patient history.
 - **Fine-tuning Strategy** (Optional): Collect and annotate high-quality PT messages for fine-tuning; might not be required if prompts, context and model are powerful enough.
@@ -72,7 +74,7 @@ The proposed solution is an AI-powered system that generates personalized messag
 1. **Input Preparation**: Gather session results, previous interactions, and patient engagement data.
 2. **Prompt Engineering**: Create structured prompts to guide the model's output.
 3. **Model Inference**: Generate message suggestions using OpenAI's API.
-4. **Post-Processing - Guardrails**: Validate message format, remove redundancy, and apply business rules (continuous improvements of LLMs can potentially remove this task combined with human in the loop).
+4. **Post-Processing - Guardrails**: Validate message format, remove redundancy, and apply business rules (continuous improvements of LLMs can potentially remove this task combined with human in the loop and context).
 5. **UI Integration**: Display the message with options to accept, edit, or reject.
 6. **Feedback Loop**: Capture PT feedback for continuous model improvement.
 
@@ -81,7 +83,7 @@ The proposed solution is an AI-powered system that generates personalized messag
 - **Session Data**: Exercise results, completion metrics, and session classification.
 - **Patient History**: Previous messages, session patterns, reported issues.
 - **PT Preferences**: Communication style, common edits, rejection patterns.
-- **Guideline Database**: Structured repository of messaging best practices.
+- **Prompt Library**: Collection of pre-defined prompts for different message types.
 
 ### Data Compliance
 
@@ -193,7 +195,7 @@ This architecture can be further enhanced with the following recommendations:
 - **gpt-4o-mini** for message generation.
 - Prompts take **~1000 tokens** (input).
 - Messages (output) average **250 tokens**, leaving a significant margin (the examples in description have ~150 tokens).
-- Infrastructure costs based on AWS pricing benchmarks.
+- Infrastructure costs based on AWS pricing benchmarks and previous projects.
 
 ##### Resources:
 - [tokenizer](https://platform.openai.com/tokenizer)
@@ -215,16 +217,16 @@ There's a big level of uncertainty here, since networking costs are very hard to
 - Upper bound: $5,000 the cost of a medium kubernetes cluster.
 
 #### Total Monthly Cost:
-Can assume $5000 as a middle ground.
+Can assume **$12,500** as a middle ground.
 
 - Total Annual Cost: $12,500 * 12 = **$150,000**
 - Accounting for a 15% slippage: **$172,500**
 
 ## Other Relevant Considerations
 
-The new project can leverage some Sword Health blueprints for quicker integration.
+The new project can leverage SWORD Health's blueprints, existing services and infrastructure for quicker integration.
 
-It should also deploy a rule-based fallback system for low-confidence AI outputs.
+It should also deploy a rule-based fallback system for low confidence AI outputs and errors.
 
 ### Risks & Mitigation
 
@@ -244,13 +246,13 @@ It should also deploy a rule-based fallback system for low-confidence AI outputs
   - **Impact:** High  
   - **Probability:** Low  
   - **Mitigation:** End-to-end encryption, access controls, audits
-  - **Misc:** Data privacy concerns are less likely since the system will only process patient data for message generation using OpenAI's Enterprise, which has strict data privacy and security measures, and Sword Health's own data privacy policies.
+  - **Misc:** Data privacy concerns are less likely since the system will only process patient data for message generation using OpenAI's Enterprise, which has strict data privacy and security measures, and SWORD Health's own data privacy policies.
 
 - **Cost Overruns**  
   - **Impact:** Medium  
   - **Probability:** Medium  
-  - **Mitigation:** Budget monitoring, cost-saving optimizations  
-  - **Misc:** Cost overruns are less likely since the system is not expected to handle a large number of users.
+  - **Mitigation:** Budget monitoring, cost-saving optimizations, detailed workflow breakdown and data transfers
+  - **Misc:** Cost overruns are not very likely since the system is not expected to handle a large number of users.
 
 - **Missing Timeline**  
   - **Impact:** Medium
