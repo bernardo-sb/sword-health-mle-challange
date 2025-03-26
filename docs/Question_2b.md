@@ -188,8 +188,8 @@ This architecture can be further enhanced with the following recommendations:
 > Not considering costs for development, maintenance, compliance and other subscriptions.
 
 - SWORD has 25,000+ enterprise clients (as in [JD](https://swordhealth.com/company/careers/ai-%26-algorithms/1b6f50a3-3e41-4873-8bf2-96e49cfda9a7)).
-- **15000** daily active users.
-- **3 AI-generated messages per user per day.**
+- **175,000** daily active users. Assuming companies have 1000+ employees, and 5% of them (50) use SWORD every month once a week (50/7=7; by company: 7*25000=175000).
+- **3 AI-generated messages per user per day**, results in **525,000** messages per month per user, a grand total of **15,750,000** messages per month (30 days).
 - **gpt-4o-mini** for message generation.
 - Prompts take **~1000 tokens** (input).
 - Messages (output) average **250 tokens**, leaving a significant margin (the examples in description have ~150 tokens).
@@ -201,24 +201,24 @@ This architecture can be further enhanced with the following recommendations:
 
 | Component                   | Estimated Monthly Cost | Notes                                      |
 |----------------------------|----------------------|------------------------------------------|
-| **OpenAI API Usage**       | $405 - $2,250       | Based on 1,350,000 messages/month (15000 * 3 * 30). Cost varies based on token usage. |
+| **OpenAI API Usage**       | $4,725 - $9,450       | Based on 15,750,000 messages/month. Cost varies based on token usage. |
 | **AWS Infrastructure**      | $2,500 - $5,000     | Covers Lambda (serverless functions), S3 (storage), CloudWatch (monitoring), and API Gateway. |
-| **Total Monthly Cost**      | **$3,000 - $7,500** | Expected to decrease over time with optimizations. |
+| **Total Monthly Cost**      | **$6,725 - $14,450** | Expected to decrease over time with optimizations. |
 
 #### Costs per model:
-- `gpt-4o-mini`: $405
-- `gpt-4o`: $6750 (table above assumes upper bound as 1/3 of this)
+- Lower bound: $4,725
+- Upper bound: $9,450 (assuming 6 messages per user per day instead  of 3)
 
 #### Infrastructure costs:
-There's a big level of uncertainty here, since networking costs are bery hard to measure.
+There's a big level of uncertainty here, since networking costs are very hard to measure.
 - Lower bound: $2,500 the cost of a small kubernetes cluster.
 - Upper bound: $5,000 the cost of a medium kubernetes cluster.
 
 #### Total Monthly Cost:
 Can assume $5000 as a middle ground.
 
-- Total Annual Cost: $5000 * 12 = **$60,000**
-- Accounting for a 15% slipage: **$69,000**
+- Total Annual Cost: $12,500 * 12 = **$150,000**
+- Accounting for a 15% slipage: **$172,500**
 
 ## Other Relevant Considerations
 
