@@ -26,6 +26,7 @@ Solutions are provided as code. Details and explanations are provided in the `do
 - Created a `dev` extra in `setup.py`.
     - Added `pytest` to `dev`.
     - Added `mkdocs`, `mkdocs-material`, `mkdocs-jupyter`, and `mkdocstrings[python]` to `dev`.
+    - Added `ruff` to `dev`.
 - Created a `dev` target in the `Makefile` for development setup.
 - Added a `get-message` command in the `Makefile` to run with a session group parameter.
 
