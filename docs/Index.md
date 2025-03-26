@@ -83,6 +83,7 @@ Follow the instructions in the [uv repository](https://github.com/astral-sh/uv) 
 +    "mkdocs-material",
 +    "mkdocs-jupyter",
 +    "mkdocstrings[python]",
++    "ruff",
 +    *packages,
  ]
  

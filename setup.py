@@ -21,6 +21,7 @@ dev_packages = [
     "mkdocs-material",
     "mkdocs-jupyter",
     "mkdocstrings[python]",
+    "ruff",
     *packages,
 ]
 
