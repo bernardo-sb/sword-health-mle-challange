@@ -119,7 +119,6 @@ You can either read the documentation on your browser (`mkdocs serve`) or read i
 
 The documentation is structured as follows:
 
-
 - Home
 - Question 1
 - Question 1 - Testing Structure and Methodology
