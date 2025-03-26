@@ -183,17 +183,42 @@ This architecture can be further enhanced with the following recommendations:
 
 ## Cost Analysis
 
-Assuming **5000** daily active users and **3** AI generated messages per user, using `gpt-4o-mini`.
-A large portion of OpenAI's cost is expected to come from development and experimentation.
+#### Assumptions:
+
+> Not considering costs for development, maintenance, compliance and other subscriptions.
+
+- SWORD has 25,000+ enterprise clients.
+- **15000** daily active users.
+- **3 AI-generated messages per user per day.**
+- **gpt-4o-mini** for message generation.
+- Prompts take **~1000 tokens** (input).
+- Messages (output) average **250 tokens**, leaving a significant margin (the examples in description have ~150 tokens).
+- Infrastructure costs based on AWS pricing benchmarks.
+
+##### Resources:
+- [tokenizer](https://platform.openai.com/tokenizer)
+- [LLM Price Check](https://llmpricecheck.com/)
 
 | Component                   | Estimated Monthly Cost | Notes                                      |
-| --------------------------- | ---------------------- | ------------------------------------------ |
-| OpenAI API Usage            | $500 - $6,000        | Based on 450,000 messages/month, varies with length |
-| AWS Infrastructure          | $2,500 - $5,000          | Includes Lambda, S3, CloudWatch |
-| Monitoring & Logging        | $200 - $400            | ELK stack, Datadog, New Relic                        |
-| **Total Monthly Cost**      | **$3,200 - $11,400**    | **Expected to decrease with optimization** |
+|----------------------------|----------------------|------------------------------------------|
+| **OpenAI API Usage**       | $405 - $2,250       | Based on 1,350,000 messages/month (15000 * 3 * 30). Cost varies based on token usage. |
+| **AWS Infrastructure**      | $2,500 - $5,000     | Covers Lambda (serverless functions), S3 (storage), CloudWatch (monitoring), and API Gateway. |
+| **Total Monthly Cost**      | **$3,000 - $7,500** | Expected to decrease over time with optimizations. |
 
-- [LLM Price Check](https://llmpricecheck.com/)
+#### Costs per model:
+- `gpt-4o-mini`: $405
+- `gpt-4o`: $6750 (table above assumes upper bound as 1/3 of this)
+
+#### Infrastructure costs:
+There's a big level of uncertainty here, since networking costs are bery hard to measure.
+- Lower bound: $2,500 the cost of a small kubernetes cluster.
+- Upper bound: $5,000 the cost of a medium kubernetes cluster.
+
+#### Total Monthly Cost:
+Can assume $5000 as a middle ground.
+
+- Total Annual Cost: $5000 * 12 = **$60,000**
+- Accounting for a 15% slipage: **$69,000**
 
 ## Other Relevant Considerations
 
