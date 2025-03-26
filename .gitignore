@@ -178,3 +178,5 @@ cython_debug/
 ml-engineer-test
 
 .DS_Store
+
+docs_build
