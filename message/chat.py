@@ -20,6 +20,7 @@ class FeedbackOption(StrEnum):
     FACTUALITY = "factuality"
     OTHER = "other"
 
+
 FEEDBACK_PROMPT_MAP = {
     FeedbackOption.TONE: prompts["TONE_PROMPT"],
     FeedbackOption.GENERIC: prompts["GENERIC_PROMPT"],
@@ -27,6 +28,7 @@ FEEDBACK_PROMPT_MAP = {
     FeedbackOption.FACTUALITY: prompts["FACTUALITY_PROMPT"],
     FeedbackOption.OTHER: prompts["OTHER_PROMPT"],
 }
+
 
 def prompt_for_acceptance() -> str:
     """Prompt user for message acceptance.
@@ -44,7 +46,8 @@ def prompt_for_acceptance() -> str:
             response = None
 
     return response
-    
+
+
 def prompt_for_edit_feedback() -> tuple[str, str]:
     """Prompt user edit for feedback.
 
@@ -55,20 +58,29 @@ def prompt_for_edit_feedback() -> tuple[str, str]:
     """
     category = None
     while not category:
-        category = input("Editing Reasons (optional) - [tone, generic, engagement, factuality, other]: ").strip().lower()
+        category = (
+            input(
+                "Editing Reasons (optional) - [tone, generic, engagement, factuality, other]: "
+            )
+            .strip()
+            .lower()
+        )
         try:
             category = "other" if not category else category
             category = FeedbackOption(category)
         except ValueError:
-            print("Invalid category. Please enter 'tone', 'generic', 'engagement', 'factuality', or 'other'.")
+            print(
+                "Invalid category. Please enter 'tone', 'generic', 'engagement', 'factuality', or 'other'."
+            )
             category = None
-    
+
     feedback = None
     while not feedback:
         feedback = input("Feedback: ").strip()
         if not feedback:
             print("Feedback cannot be empty.")
     return category, feedback
+
 
 def llm(messages: list[dict[str, str]]) -> str:
     """Get a chat completion from the LLM.
@@ -84,10 +96,9 @@ def llm(messages: list[dict[str, str]]) -> str:
         The chat completion response.
     """
     return chat_model.get_completion(
-            temperature=0,
-            model="gpt-4o-mini",
-            messages=messages
+        temperature=0, model="gpt-4o-mini", messages=messages
     )
+
 
 async def run_chat(session_group: str):
     """Run the chat.
@@ -111,17 +122,17 @@ async def run_chat(session_group: str):
             chat_history.append(
                 {
                     "role": "system",
-                    "content": prompts["SYSTEM_BASE"].format(session_data=features)
+                    "content": prompts["SYSTEM_BASE"].format(session_data=features),
                 }
             )
 
         print("[INFO] Starting chat...")
-        print("="*50)
+        print("=" * 50)
 
         acceptance = None
         while acceptance not in ["accept", "reject"]:
             message = llm(chat_history)
-            
+
             print("Message:", message)
 
             acceptance = prompt_for_acceptance()
@@ -130,12 +141,28 @@ async def run_chat(session_group: str):
                 chat_history.append({"role": "assistant", "content": message})
             if acceptance == "edit":
                 category, feedback = prompt_for_edit_feedback()
-                
-                # NOTE: could only save accepted messages instead (e.g. use temp_chat_history)
-                chat_history.append({"role": "system", "content": prompts["SYSTEM_FEEDBACK"].format(feedback_prompt=FEEDBACK_PROMPT_MAP[FeedbackOption(category)])})
-                chat_history.append({"role": "user", "content": prompts["EXTRA_FEEDBACK"].format(extra_feedback=feedback)})
 
-                print("-"*50)
+                # NOTE: could only save accepted messages instead (e.g. use temp_chat_history)
+                chat_history.append(
+                    {
+                        "role": "system",
+                        "content": prompts["SYSTEM_FEEDBACK"].format(
+                            feedback_prompt=FEEDBACK_PROMPT_MAP[
+                                FeedbackOption(category)
+                            ]
+                        ),
+                    }
+                )
+                chat_history.append(
+                    {
+                        "role": "user",
+                        "content": prompts["EXTRA_FEEDBACK"].format(
+                            extra_feedback=feedback
+                        ),
+                    }
+                )
+
+                print("-" * 50)
             if acceptance == "reject":
                 # overwrite llm message
                 message = None
@@ -146,14 +173,14 @@ async def run_chat(session_group: str):
                 chat_history.append({"role": "assistant", "content": message})
 
         print()
-        print("="*50)
+        print("=" * 50)
         print("[INFO] Shutting down...")
         await save_chat_history(chat_id, chat_history)
         return
     except Exception as e:
         print(e)
         print()
-        print("="*50)
+        print("=" * 50)
         print("[INFO] Shutting down...")
 
         await save_chat_history(chat_id, chat_history)

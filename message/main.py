@@ -9,12 +9,12 @@ app = typer.Typer()
 
 @app.command()
 def transform():
-
     # Uncomment the function you want to run
     # transform_features_sql()
     transform_features_py()
 
     return
+
 
 @app.command()
 def get_message(session_group: str):

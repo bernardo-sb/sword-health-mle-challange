@@ -1,4 +1,5 @@
 """File I/O operations."""
+
 import os
 import json
 import yaml
@@ -8,18 +9,19 @@ from pathlib import Path
 
 def load_exercise_data(data_dir: str | Path) -> pd.DataFrame:
     """Load exercise results data from parquet file.
-    
+
     Parameters
     ----------
     data_dir : str or Path
         Directory containing the exercise results data.
-        
+
     Returns
     -------
     pd.DataFrame
         Raw exercise results data.
     """
     return pd.read_parquet(Path(data_dir, "exercise_results.parquet"))
+
 
 def load_prompts() -> dict[str, str]:
     """Load prompts from YAML file.
@@ -55,6 +57,7 @@ def load_chat_history(chat_id: str) -> list[dict[str, str]]:
 
     with open(chat_file, "r") as f:
         return [json.loads(line) for line in f]
+
 
 async def save_chat_history(chat_id: str, chat_history: list[dict[str, str]]):
     """Save chat history to JSONL file.

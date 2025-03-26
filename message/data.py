@@ -13,6 +13,7 @@ from message.transform import (
     order_columns,
 )
 
+
 def open_query(query_filename: Path, **kwargs) -> str:
     """Opens a query file and formats it with the provided kwargs.
 
@@ -33,9 +34,7 @@ def transform_features_sql():
     """Loads the exercise results and transforms
     them into features using the features.sql query.
     """
-    exercise = pd.read_parquet(
-        Path(DATA_DIR, "exercise_results.parquet")
-    )  # noqa
+    exercise = pd.read_parquet(Path(DATA_DIR, "exercise_results.parquet"))  # noqa
 
     query = open_query(Path(QUERIES_DIR, "features.sql"))
 
@@ -46,7 +45,7 @@ def transform_features_sql():
 
 def transform_features_py() -> pd.DataFrame:
     """Loads the exercise results and transforms them into features.
-    
+
     Returns
     -------
     pd.DataFrame
@@ -79,6 +78,4 @@ def get_features(session_group: str) -> dict:
     """
     session = pd.read_parquet(Path(DATA_DIR, "features_expected.parquet"))
 
-    return session[session["session_group"] == session_group].to_dict(
-        orient="records"
-    )
+    return session[session["session_group"] == session_group].to_dict(orient="records")

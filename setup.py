@@ -12,7 +12,7 @@ packages = [
     "pyarrow==14.0.2",
     "SQLAlchemy==1.4.46",
     "typer==0.9.0",
-    "pyyaml"
+    "pyyaml",
 ]
 
 dev_packages = [
