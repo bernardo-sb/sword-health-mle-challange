@@ -187,7 +187,7 @@ This architecture can be further enhanced with the following recommendations:
 
 > Not considering costs for development, maintenance, compliance and other subscriptions.
 
-- SWORD has 25,000+ enterprise clients.
+- SWORD has 25,000+ enterprise clients (as in [JD](https://swordhealth.com/company/careers/ai-%26-algorithms/1b6f50a3-3e41-4873-8bf2-96e49cfda9a7)).
 - **15000** daily active users.
 - **3 AI-generated messages per user per day.**
 - **gpt-4o-mini** for message generation.
