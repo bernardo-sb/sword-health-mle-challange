@@ -127,7 +127,7 @@ This architecture can be further enhanced with the following recommendations:
 
 - **System Uptime**: 99.9% uptime SLA.
 - **API Latency**: <3 seconds for 95th percentile.
-- **Error Rate**: <1% of requests (migh be hard to achieve given strong reliance on OpenAI).
+- **Error Rate**: <1% of requests (might be hard to achieve given strong reliance on OpenAI).
 - **Resource Utilization**: Monitor CPU, memory, and disk usage.
 
 ### Data Privacy and Governance
@@ -218,7 +218,7 @@ There's a big level of uncertainty here, since networking costs are very hard to
 Can assume $5000 as a middle ground.
 
 - Total Annual Cost: $12,500 * 12 = **$150,000**
-- Accounting for a 15% slipage: **$172,500**
+- Accounting for a 15% slippage: **$172,500**
 
 ## Other Relevant Considerations
 

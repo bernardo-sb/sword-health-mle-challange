@@ -175,7 +175,7 @@ The entry point for the application:
 - Uses Typer for CLI interface
 - `get_message()` function wraps the chat functionality
 - Takes "session_group" parameter to identify which patient/session data to load
-- Uses asyncio to run the async chat function
+- Uses `asyncio` to run the async chat function
 
 **Execution Flow**:
 - Calls `run_chat()` function from `chat.py`
@@ -221,7 +221,7 @@ The chat will start with the base prompt and the session data.
 
 ### Handling Edits
 
-This example shows how the chat handles edits with feedback. It purposly show how it handles a bad edit.
+This example shows how the chat handles edits with feedback. It purposely show how it handles a bad edit.
 
 1. The app starts a new chat session with the base prompt and session data.
 2. The LLM generates a message, which is displayed to the therapist.
@@ -239,7 +239,7 @@ This example shows how the chat handles edits with feedback. It purposly show ho
 
 ### Handling Rejections
 
-This example shows how the chat handles rejections. We purposly provide an empty feedback to show how the app handles it.
+This example shows how the chat handles rejections. We purposely provide an empty feedback to show how the app handles it.
 
 1. The app starts a new chat session with the base prompt and session data.
 2. The LLM generates a message, which is displayed to the therapist.
