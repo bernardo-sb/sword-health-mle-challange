@@ -6,7 +6,7 @@ venv:
 	uv pip install --upgrade pip setuptools wheel pipenv
 	uv pip install -e .
 
-.PHONY: dev
+.ONESHELL:
 dev:
 	uv venv --python 3.11
 	uv pip install --upgrade pip setuptools wheel pipenv
@@ -19,3 +19,7 @@ transform:
 .PHONY: get-message
 get-message:
 	message get-message $(session_group)
+
+.PHONY: zip-project
+zip-project:
+	git archive --format=zip -o ml-engineer-test_bernardo-lemos.zip HEAD
